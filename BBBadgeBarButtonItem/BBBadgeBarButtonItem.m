@@ -43,7 +43,6 @@
     self.shouldBadgeOverlayButton = YES;
     self.transluscent = NO;
     self.shouldAnimateBadge = YES;
-    [self.badge bringSubviewToFront:[self.badge superview]];
     // Avoids badge to be clipped when animating its scale
     self.customView.clipsToBounds = NO;
     
@@ -55,12 +54,6 @@
 - (void)refreshBadge
 {
     // Change new attributes
-    self.badge.textColor         = self.badgeTextColor;
-    self.badge.backgroundColor   = self.badgeBGColor;
-    self.badge.font              = self.badgeFont;
-    self.badge.layer.opacity     = self.transluscent ? 0.8f : 1.0f;
-    self.badge.layer.borderWidth = self.badgeBorderWidth;
-    self.badge.layer.borderColor = self.badgeBorderColor.CGColor;
     if (self.shouldBadgeOverlayButton) {
         self.badge.layer.zPosition = 100;
         [self.badge.superview bringSubviewToFront:self.badge];
@@ -68,6 +61,13 @@
         [self.badge.superview sendSubviewToBack:self.badge];
         self.badge.layer.zPosition = 0;
     }
+    self.badge.textColor         = self.badgeTextColor;
+    self.badge.backgroundColor   = self.badgeBGColor;
+    self.badge.font              = self.badgeFont;
+    self.badge.layer.opacity     = self.transluscent ? 0.8f : 1.0f;
+    self.badge.layer.borderWidth = self.badgeBorderWidth;
+    self.badge.layer.borderColor = self.badgeBorderColor.CGColor;
+    
 }
 
 - (void)updateBadgeFrame
