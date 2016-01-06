@@ -267,7 +267,7 @@
     _badgeBorderWidth = width;
     
     if (self.badge) {
-        [self updateBadgeFrame];
+        [self refreshBadge];
     }
 }
 
