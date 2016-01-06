@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
 spec.name         = 'BBBadgeBarButtonItem'
-spec.version      = '1.2'
+spec.version      = '1.3'
 spec.platform     = 'ios'
 spec.license      = { :type => 'MIT' }
 spec.homepage     = 'https://github.com/TanguyAladenise/BBBadgeBarButtonItem'
