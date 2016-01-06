@@ -38,8 +38,10 @@
 @property (nonatomic) CGFloat badgeWidth;
 // Sets the height of the badge.
 @property (nonatomic) CGFloat badgeHeight;
-// Sets the corner radius of the badge.
-@property (nonatomic) CGFloat badgeRadius;
+// Sets the badge border width.
+@property (nonatomic) CGFloat badgeBorderWidth;
+// Sets the badge border width.
+@property (nonatomic) UIColor *badgeBorderColor;
 
 - (BBBadgeBarButtonItem *)initWithCustomUIButton:(UIButton *)customButton;
 

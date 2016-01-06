@@ -126,5 +126,19 @@
     sender.selected = !sender.selected;
 }
 
+// Example of how to change the position of the badge
+- (IBAction)changeBorder:(UIButton *)sender {
+    BBBadgeBarButtonItem *barButton = (BBBadgeBarButtonItem *)self.navigationItem.leftBarButtonItem;
+    if (!sender.selected) {
+        barButton.badgeBorderWidth = 1.1;
+        barButton.badgeBorderColor = [UIColor whiteColor];
+    }
+    else {
+        barButton.badgeBorderWidth = 0;
+        barButton.badgeBorderColor = [UIColor clearColor];
+    }
+    sender.selected = !sender.selected;
+}
+
 
 @end
