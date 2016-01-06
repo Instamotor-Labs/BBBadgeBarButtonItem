@@ -30,6 +30,16 @@
 @property BOOL shouldHideBadgeAtZero;
 // Badge has a bounce animation when value changes
 @property BOOL shouldAnimateBadge;
+// Sets the z-index of the badge to be frontmost, over the button, or under if NO.
+@property (nonatomic) BOOL shouldBadgeOverlayButton;
+// Sets a value indicating that the badge should be transluscent.
+@property (nonatomic) BOOL transluscent;
+// Sets the width of the badge.
+@property (nonatomic) CGFloat badgeWidth;
+// Sets the height of the badge.
+@property (nonatomic) CGFloat badgeHeight;
+// Sets the corner radius of the badge.
+@property (nonatomic) CGFloat badgeRadius;
 
 - (BBBadgeBarButtonItem *)initWithCustomUIButton:(UIButton *)customButton;
 

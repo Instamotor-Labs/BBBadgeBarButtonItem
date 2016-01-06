@@ -89,4 +89,42 @@
     sender.selected = !sender.selected;
 }
 
+// Example of how to change the position of the badge
+- (IBAction)changeZIndexButtonPressed:(UIButton *)sender {
+    BBBadgeBarButtonItem *barButton = (BBBadgeBarButtonItem *)self.navigationItem.leftBarButtonItem;
+    if (sender.selected) {
+        barButton.shouldBadgeOverlayButton = YES;
+    }
+    else {
+        barButton.shouldBadgeOverlayButton = NO;
+    }
+    sender.selected = !sender.selected;
+}
+
+// Example of how to change the position of the badge
+- (IBAction)changeTranslucentButtonPressed:(UIButton *)sender {
+    BBBadgeBarButtonItem *barButton = (BBBadgeBarButtonItem *)self.navigationItem.leftBarButtonItem;
+    if (!sender.selected) {
+        barButton.transluscent = YES;
+    }
+    else {
+        barButton.transluscent = NO;
+    }
+    sender.selected = !sender.selected;
+}
+
+// Example of how to change the position of the badge
+- (IBAction)changeShapeButtonPressed:(UIButton *)sender {
+    BBBadgeBarButtonItem *barButton = (BBBadgeBarButtonItem *)self.navigationItem.leftBarButtonItem;
+    if (!sender.selected) {
+        barButton.badgeMinSize = 10;
+        barButton.badgeWidth = 30;
+    }
+    else {
+        barButton.badgeWidth = 15;
+    }
+    sender.selected = !sender.selected;
+}
+
+
 @end

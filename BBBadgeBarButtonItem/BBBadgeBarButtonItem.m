@@ -40,9 +40,13 @@
     self.badgeOriginX   = 7;
     self.badgeOriginY   = -9;
     self.shouldHideBadgeAtZero = YES;
+    self.shouldBadgeOverlayButton = YES;
+    self.transluscent = NO;
     self.shouldAnimateBadge = YES;
+    [self.badge bringSubviewToFront:[self.badge superview]];
     // Avoids badge to be clipped when animating its scale
     self.customView.clipsToBounds = NO;
+    
 }
 
 #pragma mark - Utility methods
@@ -54,6 +58,7 @@
     self.badge.textColor        = self.badgeTextColor;
     self.badge.backgroundColor  = self.badgeBGColor;
     self.badge.font             = self.badgeFont;
+    self.badge.layer.opacity    = self.transluscent ? 0.8f : 1.0f;
 }
 
 - (void)updateBadgeFrame
@@ -71,15 +76,25 @@
     CGFloat minHeight = expectedLabelSize.height;
 
     // Using a const we make sure the badge respect the minimum size
-    minHeight = (minHeight < self.badgeMinSize) ? self.badgeMinSize : expectedLabelSize.height;
+    minHeight = (minHeight < self.badgeMinSize)  ? self.badgeMinSize : expectedLabelSize.height;
+    // Use badge height if it meets the minimum size requirement.
+    minHeight = (minHeight < self.badgeHeight) ? self.badgeHeight : minHeight;
+    
     CGFloat minWidth = expectedLabelSize.width;
     CGFloat padding = self.badgePadding;
 
     // Using const we make sure the badge doesn't get too smal
     minWidth = (minWidth < minHeight) ? minHeight : expectedLabelSize.width;
+    //Use badge width if less than expected with.
+    minWidth = (minWidth < self.badgeWidth) ? self.badgeWidth : minWidth;
     self.badge.frame = CGRectMake(self.badgeOriginX, self.badgeOriginY, minWidth + padding, minHeight + padding);
     self.badge.layer.cornerRadius = (minHeight + padding) / 2;
     self.badge.layer.masksToBounds = YES;
+    if (self.shouldBadgeOverlayButton) {
+        [self.badge.superview bringSubviewToFront:self.badge];
+    } else {
+        [self.badge.superview sendSubviewToBack:self.badge];
+    }
 }
 
 // Handle the badge changing value
@@ -208,6 +223,39 @@
 {
     _badgeOriginY = badgeOriginY;
 
+    if (self.badge) {
+        [self updateBadgeFrame];
+    }
+}
+
+- (void)setShouldBadgeOverlayButton:(BOOL)shouldOverlayButton
+{
+    _shouldBadgeOverlayButton = shouldOverlayButton;
+    
+    if (self.badge) {
+        [self updateBadgeFrame];
+    }
+}
+
+- (void)setTransluscent:(BOOL)transluscent {
+    _transluscent = transluscent;
+    
+    if (self.badge) {
+        [self refreshBadge];
+    }
+}
+
+- (void)setBadgeHeight:(CGFloat)height {
+    _badgeHeight = height;
+    
+    if (self.badge) {
+        [self updateBadgeFrame];
+    }
+}
+
+- (void)setBadgeWidth:(CGFloat)width {
+    _badgeWidth = width;
+    
     if (self.badge) {
         [self updateBadgeFrame];
     }
