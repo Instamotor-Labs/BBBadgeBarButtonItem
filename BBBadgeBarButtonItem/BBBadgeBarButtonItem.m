@@ -31,11 +31,8 @@
 
 - (void)initializer
 {
-    if (!self.badge) {
-        self.badge = [[UILabel alloc] initWithFrame:CGRectMake(self.badgeOriginX, self.badgeOriginY, 20, 20)];
-        self.badgeBorderWidth = 2;
-        self.badgeBorderColor = [UIColor whiteColor];
-    }
+    self.badgeBorderWidth = 2;
+    self.badgeBorderColor = [UIColor whiteColor];
     // Default design initialization
     self.badgeBGColor   = [UIColor redColor];
     self.badgeTextColor = [UIColor whiteColor];
